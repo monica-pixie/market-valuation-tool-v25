@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeff Valuations</title>
+
+    <!-- FontAwesome for calendar icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<header>
+  <img src="FOR SALE BIG BOARD MASTER.png" alt="Seeff Logo" class="logo">
+</header>
+
+<form id="valuationForm">
+
+  <h1>PROPERTY ADDRESS</h1>
+
+  <label for="unit">Unit Number:</label>
+  <input type="text" id="unit" placeholder="Unit Number" required>
+
+  <label for="street">Street Name:</label>
+  <input type="text" id="street" placeholder="Street Name" required>
+
+  <label for="area">Area:</label>
+  <input type="text" id="area" placeholder="Area" required>
+
+  <h1>CLIENT DETAILS</h1>
+
+  <label for="clientName">Client Name:</label>
+  <input type="text" id="clientName" placeholder="Client Name" required>
+
+  <label for="clientSurname">Client Surname:</label>
+  <input type="text" id="clientSurname" placeholder="Client Surname" required>
+
+  <label>Is there more than one owner?</label>
+
+  <div class="toggle-button-group">
+    <button type="button" id="multipleOwnersYes" class="toggle-button">Yes</button>
+    <button type="button" id="multipleOwnersNo" class="toggle-button selected">No</button>
+  </div>
+
+  <div id="secondOwnerFields" style="display: none; margin-top: 20px;">
+    <label for="secondOwnerName">Second Owner Name:</label>
+    <input type="text" id="secondOwnerName" placeholder="Second Owner Name">
+
+    <label for="secondOwnerSurname">Second Owner Surname:</label>
+    <input type="text" id="secondOwnerSurname" placeholder="Second Owner Surname">
+  </div>
+
+  <!-- Upload House Image Button -->
+  <label for="houseImageUpload" class="upload-btn">
+    Choose Image
+  </label>
+  <input type="file" id="houseImageUpload" accept="image/*" required style="display: none;">
+  
+  <!-- Section to display uploaded image -->
+  <div id="uploadedImageSection" style="display: none;">
+    <img id="houseImage" class="house-image" src="" alt="Uploaded House Image">
+  </div>
+
+  <h1>PROPERTY DETAILS</h1>
+
+  <label for="legalDescription">Legal Description:</label>
+  <input type="text" id="legalDescription" placeholder="Enter Legal Description" required>
+
+  <label for="extent">Extent:</label>
+  <input type="number" id="extent" placeholder="eg. 500" required>
+
+  <label for="extentUnit">Extent Unit:</label>
+  <select id="extentUnit" required>
+    <option value="">Select Unit</option>
+    <option value="m²">m²</option>
+    <option value="hectares">hectares</option>
+    <option value="acres">acres</option>
+  </select>
+
+  <!-- Valuation Date -->
+  <label for="valuationDate">Valuation Date:</label>
+  <div class="calendar-container">
+      <div class="input-container">
+          <input type="date" id="valuationDate" placeholder="yyyy / mm / dd" required>
+          <span class="calendar-icon" id="calendarIcon">
+              <i class="fa-solid fa-calendar"></i>
+          </span>
+      </div>
+  </div>
+
+  <h1>PREPARED BY</h1>
+
+  <!-- Agent Fields -->
+  <label for="agentSelect">Agent:</label>
+  <select id="agentSelect" required>
+    <option value="">Select Agent</option>
+    <option value="Gregg">Gregg Wilson</option>
+    <option value="Bradley">Bradley Topham</option>
+    <option value="Cara Ann">Cara Ann Ridl</option>
+    <option value="Carmen">Carmen Jones</option>
+    <option value="Cece">Cece Tsewu</option>
+    <option value="Charlotte">Charlotte Scholtz</option>
+    <option value="Cindy">Cindy Johnston</option>
+    <option value="Dave">Dave Jones</option>
+    <option value="Fiona">Fiona Patrick</option>
+    <option value="Graham">Graham Noot</option>
+    <option value="Hayden">Hayden Dowdall</option>
+    <option value="Lynette">Lynette Dorkin</option>
+    <option value="Matty">Matty Kemp</option>
+    <option value="Natasha">Natasha Brown</option>
+    <option value="Nolwazi">Nolwazi Phewa</option>
+    <option value="Shane">Shane Savage</option>
+    <option value="Sue">Sue Andrews</option>
+    <option value="Varina">Varina Ross</option>
+    <option value="newAgent">+ New Agent</option>
+  </select>
+
+  <div id="newAgentFields" style="display: none;">
+    <label>New Agent First Name:</label>
+    <input type="text" id="newAgentFirstName" placeholder="First Name">
+
+    <label>New Agent Surname:</label>
+    <input type="text" id="newAgentSurname" placeholder="Surname">
+
+    <label>New Agent Cell Number:</label>
+    <input type="text" id="newAgentCell" placeholder="Cell Number">
+
+    <label>New Agent Email:</label>
+    <input type="text" id="newAgentEmail" placeholder="Email">
+  </div>
+
+  <div id="existingAgentFields">
+    <label>First Name:</label>
+    <input type="text" id="agentFirstName" disabled>
+
+    <label>Surname:</label>
+    <input type="text" id="agentSurname" disabled>
+
+    <label>Cell Number:</label>
+    <input type="text" id="agentCell" disabled>
+
+    <label>Email Address:</label>
+    <input type="text" id="agentEmail" disabled>
+  </div>
+
+  <h2>MARKET VALUATION ASKING PRICE</h2>
+
+  <label for="askingPrice">Asking Price:</label>
+  <input type="text" id="askingPrice" class="price" placeholder="R0" required>
+
+  <div class="note-section">
+    <h3>Features of Your Home</h3>
+    <ul class="editable-list" id="featuresList" contenteditable="true">
+      <li><br></li>
+    </ul>
+  </div>
+  
+  <div class="note-section">
+    <h3>Possible Buyer Concerns</h3>
+    <ul class="editable-list" id="concernsList" contenteditable="true">
+      <li><br></li>
+    </ul>
+  </div>
+
+
+  <!-- Competition and Sales toggles & sections -->
+<div class="toggle-section">
+  <h2>Would you like to add Competition in the Area?</h2>
+  <div class="toggle-button-group">
+    <button type="button" id="competitionYes" class="toggle-button">Yes</button>
+    <button type="button" id="competitionNo" class="toggle-button selected">No</button>
+  </div>
+</div>
+
+<!-- ✅ Updated Block-Style Competition Section (includes 1 visual sample block) -->
+<div id="competitionSection" style="display: none;">
+  <h2>Competition in the Area</h2>
+
+  <!-- Sample block for visual testing -->
+  <div class="comparable-block">
+    <!-- Selling & Listing Price -->
+    <div class="input-pair">
+      <label>SELLING PRICE</label>
+      <input type="text" placeholder="R0">
+    </div>
+    <div class="input-pair">
+      <label>LISTING PRICE</label>
+      <input type="text" placeholder="R0">
+    </div>
+
+    <!-- Address Full Width -->
+    <div class="input-pair address-row">
+      <label>ADDRESS</label>
+      <input type="text" placeholder="e.g. 123 Hilltop Road, Hillcrest">
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+      <div class="feature-block">
+        <label>BEDS</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>BATHS</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>REC</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>m²</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>GAR</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>G/FLAT</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>POOL</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>+</label>
+        <input type="button" value="Add New">
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for future blocks -->
+  <div id="competitionContainer"></div>
+  <button type="button" class="add-btn" id="addComparableBtn">+ Add Another Comparable</button>
+</div>
+
+<div class="toggle-section">
+  <h2>Would you like to add Recent Comparable Sales?</h2>
+  <div class="toggle-button-group">
+    <button type="button" id="salesYes" class="toggle-button">Yes</button>
+    <button type="button" id="salesNo" class="toggle-button selected">No</button>
+  </div>
+</div>
+
+<!-- Recent Comparable Sales Section (new block layout version) -->
+<div id="salesTableSection" style="display: none;">
+  <h2>RECENT COMPARABLE SALES</h2>
+
+  <!-- Sample block -->
+  <div class="comparable-block">
+    <!-- Selling & Listing Price -->
+    <div class="input-pair">
+      <label>SELLING PRICE</label>
+      <input type="text" placeholder="R0">
+    </div>
+    <div class="input-pair">
+      <label>LISTING PRICE</label>
+      <input type="text" placeholder="R0">
+    </div>
+
+    <!-- Address Full Width -->
+    <div class="input-pair address-row">
+      <label>ADDRESS</label>
+      <input type="text" placeholder="e.g. 33 Oakland Ave, Hillcrest">
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+      <div class="feature-block">
+        <label>BEDS</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>BATHS</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>REC</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>m²</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>GAR</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>G/FLAT</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>POOL</label>
+        <input type="text" placeholder="1">
+      </div>
+      <div class="feature-block">
+        <label>+</label>
+        <input type="button" value="Add New">
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for JS-generated blocks -->
+  <div id="salesContainer"></div>
+  <button type="button" id="addSaleRowBtn" class="add-btn">+ Add Another Sale</button>
+</div>
+
+<!-- Spinner -->
+<div id="spinner" class="spinner">
+  <div class="loader"></div>
+</div>
+
+<!-- Submit Button -->
+<button type="submit" id="submitBtnFull">Submit Full Valuation</button>
+
+<!-- Scripts -->
+<script src="scripts.js"></script>
+</body>
+</html>
