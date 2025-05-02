@@ -1,0 +1,411 @@
+/* Reset styles for margin, padding, and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and general styles */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+/* Logo */
+.logo {
+  width: 30%;
+  max-width: 200px;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Headings */
+h1, h2 {
+  color: #01245c;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+h1 { font-size: 26px; }
+h2 { font-size: 22px; font-weight: bold; }
+
+/* Form */
+form {
+  background: white;
+  padding: 30px;
+  width: 90%;
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* General Button Styles */
+button {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #01245c; /* Seeff Blue */
+  color: white;
+  display: inline-block; /* Ensures the buttons are inline */
+  margin-bottom: 10px; /* Adds space between buttons */
+}
+
+/* Hover Effects for Buttons */
+button:hover {
+  background-color: #0096d6; /* Lighter Seeff Blue on hover */
+}
+
+/* Specific Button Classes */
+.add-btn, .delete-btn, #submitBtnFull {
+  background-color: #01245c; /* Seeff Blue */
+  color: white;
+}
+
+/* Hover Effects for Specific Buttons */
+.add-btn:hover, .delete-btn:hover, #submitBtnFull:hover {
+  background-color: #0096d6; /* Lighter Seeff Blue on hover */
+}
+
+/* "Add Another" and "Delete" Buttons */
+.add-btn {
+  margin-top: 20px;
+  margin-bottom: 15px; /* Added space below "Add Another" button */
+}
+
+.delete-btn {
+  background-color: #d31143; /* Red color for delete */
+  margin-top: 15px; /* Adds space on top of delete button */
+}
+
+.delete-btn:hover {
+  background-color: #ff4d6d; /* Lighter Red on hover */
+}
+
+/* Submit Button */
+#submitBtnFull {
+  margin-top: 25px; /* Adds space between Submit button and others */
+}
+
+/* Labels */
+form label {
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Inputs and Selects */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input.price {
+  font-weight: normal; /* Remove bold */
+}
+
+/* Calendar input wrapper */
+.calendar-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+.input-container input {
+  width: 100%;
+  height: 50px;
+  padding: 0 40px 0 12px; /* space for calendar icon */
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Calendar icon */
+.calendar-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #01245c; /* Seeff Blue */
+}
+
+/* Optional hover effect (light blue on hover) */
+.calendar-icon:hover {
+  color: #0096d6; /* Lighter Seeff Blue on hover */
+}
+
+/* Toggle Button Group */
+.toggle-button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px
+}
+
+.toggle-button {
+  background-color: #ccc; /* Light grey background for non-selected */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px; /* Rounded toggle buttons */
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  border: none;
+}
+
+.toggle-button.selected {
+  background-color: #01245c; /* Seeff Blue for selected */
+}
+
+.toggle-button:hover {
+  background-color: #0096d6; /* Lighter blue on hover */
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+/* Tables */
+.competition-table, .sales-table {
+  width: 90%;
+  margin: 0 auto 20px;
+  border-collapse: collapse;
+}
+
+.competition-table th, .sales-table th {
+  background: #01245c;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.competition-table td, .sales-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.compInput, .salesInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Spinner */
+.spinner {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 6px solid #ccc;
+  border-top: 6px solid #01245c;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  form {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .calendar-icon {
+    right: 10px;
+    font-size: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* House Image Styling */
+.house-image {
+  width: 100%;         /* Ensures the image is responsive */
+  height: auto;        /* Maintains aspect ratio */
+  max-width: 600px;    /* Limits the maximum width */
+  max-height: 400px;   /* Optionally, limits the maximum height */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Hide default browser date picker icon if type="date" is used */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Default grey color for 'Select Unit' */
+select {
+  color: #999; /* Grey */
+}
+
+/* When an option is selected, change the color to black */
+select:focus {
+  color: black; /* Turn black when focused */
+}
+
+select option {
+  color: black; /* Change option text to black once selected */
+}
+
+/* Hide the default file input */
+input[type="file"] {
+  display: none;
+}
+
+/* Modernize the Upload Button */
+.upload-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  margin-bottom: 20px; 
+  font-size: 16px;
+  background-color: #01245c; /* Seeff Blue */
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 15px
+}
+
+.upload-btn:hover {
+  background-color: #0096d6; /* Lighter blue on hover */
+}
+
+/* Image Section Styling */
+#uploadedImageSection {
+  margin-top: 20px;
+  display: none;
+}
+
+/* House Image Styling */
+.house-image {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover; /* Ensures the image scales properly */
+  border-radius: 8px;
+  margin-top: 10px;
+
+
+}
+/* Buyer Home Features and Possible Concerns */
+.editable-list {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 16px;
+  min-height: 120px;
+  list-style-type: disc;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 25px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.editable-list:focus {
+  outline: none;
+  border-color: #0096d6; /* Lighter Seeff blue */
+  box-shadow: 0 0 0 2px rgba(0, 150, 214, 0.2);
+}
+
+.note-section h3 {
+  text-align: left;
+  color: #01245c; /* Seeff blue */
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.comparable-block {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+/* Input group with label above input */
+.input-pair {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.input-pair label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.input-pair input {
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+}
+
+/* Full-width address row */
+.address-row {
+  margin-bottom: 20px;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.features-grid .feature-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.features-grid label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.features-grid input {
+  padding: 9px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  text-align: center;
+}
